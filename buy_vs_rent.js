@@ -1,6 +1,6 @@
 // Accounts object
 function Accounts({
-  savings_start = 0,
+  savings_start = 15000,
   savings_interest = 0.07,
   savings_payments = 0,
   expendible_income_increase = 0,
@@ -114,7 +114,7 @@ function Accounts({
 
 function test() {
   // Check results match python with some sensible parameters
-  let years = 25;
+  let years = 10;
   let initial_investment = 50000;
   let house_value = 400000;
   let mortgage_start = house_value - initial_investment;
@@ -140,3 +140,9 @@ function test() {
 }
 
 test();
+
+function run_numbers() {
+  let years = +document.getElementById('years').value;
+
+  console.log(years)
+}
