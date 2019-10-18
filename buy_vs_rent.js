@@ -113,8 +113,9 @@ function Accounts({
   };
 
   this.populate_results = function() {
+    console.log('firing')
     //function to populate results on page
-    mortgage_result.innerHTML = 
+    // mortgage_result.innerHTML = 
     // owner_savings_result.innerHTML = 
     // owner_total_assets_result.innerHTML = 
     // rent_payments_result.innerHTML = 
@@ -162,7 +163,6 @@ let house_value = +document.getElementById('house_value').value;
 let savings_start = +document.getElementById('savings_start').value
 let mortgage_start = (house_value - savings_start);
 
-console.log(mortgage_start)
 
 // rental account
 let account = new Accounts({
@@ -172,10 +172,18 @@ let account = new Accounts({
 });
 account.step_n_years(years)
 account.pretty_print();
+account.populate_results();
 
 // buyer account 
-let account = new Accounts({
+account = new Accounts({
+  savings_payments: +document.getElementById('savings_payments').value,
+  mortgage_payments: +document.getElementById('savings_payments').value,
+  mortgage_start: mortgage_start,
+  house_value: house_value,
+});
+account.step_n_years(years)
+account.pretty_print()
+account.populate_results();
 
-})
 
 }
