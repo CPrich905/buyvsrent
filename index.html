@@ -25,47 +25,41 @@
         
         <div class="row">
           <div class="col-25">
-            <label for="savings_start">Savings start:</label>
+            <label for="savings_start">Initial investment:</label>
           </div>
           <div class="col-75">
-            <input type="number" name="savings_start" id="savings_start" placeholder="Savings..."> 
+            <input type="number" name="savings_start" id="savings_start" placeholder="Savings/Initial investment, defaults to £15,000"> 
           </div>
+          <p>This is your initial capital - either a deposit for a house or a lump sum in savings</p>
         </div>
         
         <div class="row">
           <div class="col-25">     
-            <label for="savings_interest">Savings Interest</label>
+            <label for="savings_payments">Monthly payments</label>
           </div>
           <div class="col-75">
-            <input type="number" name="savings_interest" id="savings_interest" placeholder="Savings Interest">    
+            <input type="number" name="savings_payments" id="savings_payments" placeholder="Monthly payments">    
           </div>
+          <p>The maximum amount you're willing to pay per month in rent/mortgage payments. Once your mortgage or rent is paid, the remainder is paid into your savings account.</p>
         </div>
         
         <div class="row">
-          <div class="col-25">
-            <label for="savings_payments">Saving payments</label>
+          <div class="col-25">     
+            <label for="years">Years to calculate</label>
           </div>
           <div class="col-75">
-            <input type="number" name="savings_payments" id="savings_payments" placeholder="Regular installments"/>
+            <input type="number" name="years" id="years" placeholder="Years, defaults to 20">    
           </div>
         </div>
-        
-        <div class="row">
-          <div class="col-25">
-            <label for="expendible_income_increase"></label>
-          </div>
-          <div class="col-75">
-            <input type="number" name="expendible_income_increase" id="expendible_income_increase" placeholder="Expendible income increase">
-          </div>
-        </div>
-        
-        
-        <input type="button" onclick="calcSave()" value="Click me!">    
+
       </form>
     </div>
   
     <div class="outputs col-50">
       <h2>Results</h2>
+      <button class="the_button" onclick="run_numbers()">
+        Do the maths
+      </button>
       <div class="owner_results col-50">
         <h4>Owner</h4>
           <p class="mortgage">Mortgage: <span id="mortgage_result"></span> </p>
@@ -74,8 +68,8 @@
       </div>
       <div class="renter_results col-50">
         <h4>Renter</h4>
-          <p class="rent">Mortgage: <span id="rent_result"></span> </p>
-          <p class="savings">Savings:<span id="rent_savings_result"></span> </p>
+          <p class="rent_payments">Rent payments: <span id="rent_payments_result"></span> </p>
+          <p class="savings">Savings:<span id="owner_savings_result"></span> </p>
           <p class="rent_total_assets">Total assets:<span id="rent_assets_result"></span> </p>
       </div>
     </div>
@@ -83,43 +77,33 @@
 
   <div class="buy-rent">
     <div class="row">
-      <h2>Accommodation details</h2>
+      <h2>Owner/Renter details</h2>
     </div>
     <div class="row">
       <form action="" id="house_inputs">
 
         <div class="owner col-50">
-          <h3>Enter your ownership costs</h3>
+          <h3>Ownership costs</h3>
           <div class="col-25">
-            <label for="mortgage_start">Mortgage starting value</label>
+            <label for="mortgage_start">Mortgage initial deposit</label>
           </div>
           <div class="col-75">
-            <input type="number" name="mortgage_start" id="mortgage_start">
+            <input type="number" name="mortgage_start" id="mortgage_start" placeholder="Defaults to your initial investment or £15,000">
           </div>
           <div class="col-25">
-            <label for="mortgage_interest">Monthly mortgage interest</label>
+            <label for="mortgage_interest">Mortgage interest</label>
           </div>
           <div class="col-75">
-            <input type="number" name="mortgage_interest" id="mortgage_interest">
+            <input type="number" name="mortgage_interest" id="mortgage_interest" placeholder="Defaults to 0.025%">
           </div>
-          <div class="col-25">
-            <label for="mortgage_payments">Monthly mortgage payments</label>
-          </div>
-          <div class="col-75">
-            <input type="number" name="mortgage_payments" id="mortgage_payments">
-          </div>
+
           <div class="col-25">
             <label for="house_value">House value</label>
           </div>
           <div class="col-75">
             <input type="number" name="house_value" id="house_value">
           </div>
-          <div class="col-25">
-            <label for="house_growth">House growth</label>
-          </div>
-          <div class="col-75">
-            <input type="number" name="house_growth" id="house_growth">
-          </div>
+       
         </div>
 
         <div class="renter col-50">
@@ -131,32 +115,47 @@
             <input type="number" name="rent_payments" id="rent_payments">
           </div>
           <div class="col-25">
-            <label for="rent_growth">Rent growth</label>
+            <label for="savings_interest">Savings interest</label>
           </div>
           <div class="col-75">
-            <input type="number" name="rent_growth" id="rent_growth">
+            <input type="number" name="savings_interest" id="savings_interest" placeholder="Savings Interest, defaults to 0.07">
           </div>
         </div>
     </div> 
     <div class="row">
-        <div class="common-costs col-50">
-          <h3>Enter common costs</h3>
-          <div class="col-25">
-            <label for="bills">Bills</label>
+        <div class="common-costs col-100">
+          <h3>Enter additional figures if known</h3>
+          <div class="col-50">
+            <div class="col-25">
+              <label for="house_growth">House Growth</label>
+            </div>
+            <div class="col-75">
+              <input type="number" name="house_growth" id="house_growth" placeholder="Defaults to 0.03">
+            </div>
+            <div class="col-25">
+              <label for="rent_growth">Rent growth/increase</label>
+            </div>
+            <div class="col-75">
+              <input type="number" name="rent_growth" id="rent_growth" placeholder="Defaults to 0">
+            </div>
           </div>
-          <div class="col-75">
-            <input type="number" name="bills" id="bills">
+          
+          <div class="col-50">
+            <div class="col-25">
+              <label for="expendible_income_increase">Expendible income increase</label>
+            </div>
+            <div class="col-75">
+              <input type="number" name="expendible_income_increase" id="expendible_income_increase" placeholder="Expendible income increase">
+            </div>
+            <div class="col-25">
+              <label for="rent_growth">Rent growth/increase</label>
+            </div>
+            <div class="col-75">
+              <input type="number" name="rent_growth" id="rent_growth" placeholder="Defaults to 0">
+            </div>
           </div>
         </div>
-        <div class="cost-buttons col-50">
-          <input type="button" onclick="calcMort()" value="Calculate owner annual costs">
-          <input type="button" onclick="calcRent()" value="Calculate rental annual costs"> 
-          <form action="demo">
-            <input type="number" id="years"><br/>
-            <input type="button" onclick="run_numbers()">
-
-          </form>
-        </div>
+      </div>
       </div>
       </form>
     

@@ -88,12 +88,13 @@ function Accounts({
     this.total_assets = total_assets;
   };
 
+  // function multplying inputs by years
   this.step_n_years = function(years) {
     for (year = 0; year < years; year++) {
       this.step();
     }
   };
-
+  // function to return results in console
   this.pretty_print = function() {
     let to_print = ["mortgage", "savings", "total_assets"];
 
@@ -110,6 +111,17 @@ function Accounts({
       console.log(info);
     }
   };
+
+  this.populate_results = function() {
+    //function to populate results on page
+    mortgage_result.innerHTML = 
+    // owner_savings_result.innerHTML = 
+    // owner_total_assets_result.innerHTML = 
+    // rent_payments_result.innerHTML = 
+    // rent_savings_result.innerHTML = 
+    // rent_total_assets_result.innerHTML = 
+  }
+
 }
 
 function test() {
@@ -142,7 +154,28 @@ function test() {
 test();
 
 function run_numbers() {
-  let years = +document.getElementById('years').value;
+// CONNECTS TO FRONT
+  
+//COMMON VALUES
+let years = document.getElementById('years').value;
+let house_value = +document.getElementById('house_value').value;
+let savings_start = +document.getElementById('savings_start').value
+let mortgage_start = (house_value - savings_start);
 
-  console.log(years)
+console.log(mortgage_start)
+
+// rental account
+let account = new Accounts({
+  savings_payments: +document.getElementById('savings_payments').value,
+  rent_payments: +document.getElementById('rent_payments'),
+  savings_start: savings_start,
+});
+account.step_n_years(years)
+account.pretty_print();
+
+// buyer account 
+let account = new Accounts({
+
+})
+
 }

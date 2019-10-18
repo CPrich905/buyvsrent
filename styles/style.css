@@ -20,7 +20,7 @@ input {
 } 
 
 .user-inputs {
-  background-color: grey;
+  border: 2px solid grey;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,8 +49,12 @@ input {
   margin-top: 5px;
 }
 
+.col-100 {
+  width: 100%;
+}
+
 .buy-rent {
-  background-color: green;
+  border: 2px solid green;
   display: flex;
   text-align: center;
   align-items: center;
@@ -58,29 +62,33 @@ input {
 }
 
 .owner {
-  background-color: blue;
-  border: 2px solid black;
+  border: 2px solid blue;
   float: left;
 }
 
 .renter {
   float: right;
-  background-color: red;
-  border: 2px solid black;
+  border: 2px solid red;
 }
 
 .common-costs {
   margin: 0, auto;  
-  background-color: yellow;
+  border: 2px solid yellow;
   align-self: center;
   justify-self: center;
   text-align: center;
 }
 
-.cost-buttons {
-  margin: 0, auto;  
-  float: left;
+.the_button {
+  width: 50%;
+  border-radius: 5px;
+  padding: 5px;
   background-color: grey;
+  margin: 15px;
+}
+
+.outputs {
+  text-align: center;
 }
 
 input[type=button] {
