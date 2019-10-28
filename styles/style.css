@@ -12,12 +12,12 @@ label {
   display: inline-block;
 }
 
-input { 
+input {
   width: 75%;
   padding: 10px;
   margin: 2px;
   border-radius: 5px;
-} 
+}
 
 header {
   text-align: center;
@@ -76,7 +76,7 @@ header {
 }
 
 .common-costs {
-  margin: 0, auto;  
+  margin: 0, auto;
   border: 2px solid yellow;
   align-self: center;
   justify-self: center;
@@ -99,4 +99,3 @@ input[type=button] {
   width: 50%;
   border-radius: 5px;
 }
-
