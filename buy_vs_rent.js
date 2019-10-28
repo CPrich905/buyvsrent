@@ -113,11 +113,11 @@ function Accounts({
   };
 
   this.populate_results = function() {
-    console.log('firing')
+    // console.log('firing')
     //function to populate results on page
-    // mortgage_result.innerHTML = 
-    // owner_savings_result.innerHTML = 
-    // owner_total_assets_result.innerHTML = 
+    mortgage_result.innerHTML = this.mortgage.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})
+    owner_savings_result.innerHTML = this.savings.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})
+    owner_total_assets_result.innerHTML = this.total_assets.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})
     // rent_payments_result.innerHTML = 
     // rent_savings_result.innerHTML = 
     // rent_total_assets_result.innerHTML = 

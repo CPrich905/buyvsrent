@@ -19,6 +19,10 @@ input {
   border-radius: 5px;
 } 
 
+header {
+  text-align: center;
+}
+
 .user-inputs {
   border: 2px solid grey;
   display: flex;
