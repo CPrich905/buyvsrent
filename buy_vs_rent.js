@@ -3,7 +3,6 @@ function Accounts({
   savingsStart = 15000,
   savingsInterest = 0.07,
   savingsPayments = 0,
-  expendibleIncomeIncrease = 0,
   rentPayments = 0,
   rentGrowth = 0,
   mortgageStart = 0,
@@ -16,7 +15,6 @@ function Accounts({
   this.savingsStart = savingsStart
   this.savingsInterest = savingsInterest
   this.savingsPayments = savingsPayments
-  this.expendibleIncomeIncrease = expendibleIncomeIncrease
   this.rentPayments = rentPayments
   this.rentGrowth = rentGrowth
   this.mortgageStart = mortgageStart
@@ -37,6 +35,7 @@ function Accounts({
 
     // Step 1 month at a time, as savings often compound monthly
     for (i = 0; i < 12; i++) {
+
       ///// MORTGAGE
       // Calculate mortage interest
       mInterest = this.mortgage * (this.mortgageInterest / 12);
@@ -102,6 +101,7 @@ function Accounts({
     for (let k of toPrint) {
       // Format v
       let v = this[k]
+      console.log(k, v)
       v = v.toFixed(2).toLocaleString()
       v = v.toString().padStart(20, ' ')
 
@@ -110,86 +110,127 @@ function Accounts({
       let info = `${k}${v}`
       console.log(info)
     }
-
-
   }
 
-  this.populateResults = function() {
-    console.log('populateResults firing')
+  //
+  this.populateRentResults = function() {
+    console.log('populateRentResults firing')
     //function to populate results on page
+    mortgageResult.innerHTML = this.mortgage.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})
+    rentSavingsResult.innerHTML = this.savings.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})
+    rentAssetsResult.innerHTML = this.totalAssets.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})
+
+  }
+  this.populateBuyResults = function() {
+    console.log('populateBuyResults firing')
+
     mortgageResult.innerHTML = this.mortgage.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})
     ownerSavingsResult.innerHTML = this.savings.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})
     ownerTotalAssetsResult.innerHTML = this.totalAssets.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})
-    // rentPaymentsResult.innerHTML = this.
-    // rentSavingsResult.innerHTML =
-    // rentTotalAssetsResult.innerHTML =
   }
-
-
-
 }
+
 
 function test() {
   // Check results match python with some sensible parameters
   let years = 10
-  let initialInvestment = 50000
+  let initialInvestment = 10000
   let houseValue = 400000
   let mortgageStart = houseValue - initialInvestment
 
+  // let rentPayments = 1300
+  // let monthlyPayments = savingsPayments
+
   // Rent type account
-  let account = new Accounts({
+  let rentAccount = new Accounts({
     savingsPayments: 800,
-    rentPayments: 1200,
+    rentPayments: 1300,
     savingsStart: initialInvestment
   })
-  account.step_n_years(years)
-  account.prettyPrint()
-
 
   // Mortgage type account
-  account = new Accounts({
+  let buyAccount = new Accounts({
     savingsPayments: 800,
     mortgagePayments: 1200,
     mortgageStart: mortgageStart,
     houseValue: houseValue
   })
-  account.step_n_years(years)
-  account.prettyPrint()
+
+  console.log('test buyAccount', buyAccount)
+  buyAccount.step_n_years(years)
+  buyAccount.prettyPrint()
+
+
+  console.log('test rentAccount', rentAccount)
+  rentAccount.step_n_years(years)
+  rentAccount.prettyPrint()
 }
 
 test()
 
 function runNumbers() {
-// CONNECTS TO FRONT
-  console.log('runNumbers firing')
   //COMMON VALUES
-  let years = document.getElementById('years').value
+  let years = +document.getElementById('years').value
+  let savingsPayments = +document.getElementById('savingsPayments').value
+  console.log('runNumbers years', years)
   let houseValue = +document.getElementById('houseValue').value
   let savingsStart = +document.getElementById('savingsStart').value
   let mortgageStart = (houseValue - savingsStart)
+  let rentPayments = +document.getElementById('rentPayments').value
+
 
 
   // rental account - moved to rentNumbers
   // buyer account
-  account = new Accounts({
-    savingsPayments: +document.getElementById('savingsPayments').value,
+  let buyAccount = new Accounts({
+    savingsPayments: savingsPayments,
     mortgagePayments: +document.getElementById('savingsPayments').value,
-    mortgageStart: mortgageStart,
-    houseValue: houseValue
+    savingsStart: savingsStart,
+    houseValue: houseValue,
+    mortageStart: mortgageStart
   })
-  account.step_n_years(years)
-  account.prettyPrint()
-  account.populateResults()
+  //
+  console.log('runNumbers buyAccount', buyAccount)
+  buyAccount.step_n_years(years)
+  buyAccount.prettyPrint()
+  buyAccount.populateBuyResults()
+
+  let rentAccount = new Accounts({
+    savingsPayments: savingsPayments,
+    savingsStart: savingsStart,
+    rentPayments: rentPayments
+  })
+
+  console.log('runNumbers rentAccount', rentAccount)
+  rentAccount.step_n_years(years)
+  rentAccount.prettyPrint()
+  rentAccount.populateRentResults()
 }
 
-function rentNumbers() {
-  console.log('rent numbers')
-  let account = new Accounts({
-    savingsPayments: +document.getElementById('savingsPayments').value,
-    rentPayments: +document.getElementById('rentPayments'),
-    savingsStart: savingsStart
-  })
-  account.step_n_years(years)
-  account.prettyPrint()
-  account.populateResults()
-}
+//rent numbers following calc_net_assets in buy_vs_rent.py line 96
+
+
+// runNumbers()
+
+// function rentNumbers() {
+//   //COMMON VALUES
+//   let years = +document.getElementById('years').value
+//   let rentPayments = +document.getElementById('rentPayments').value
+//   let savingsStart = +document.getElementById('savingsStart').value
+//   let savingsPayments = +document.getElementById('savingsPayments').value
+//
+//
+//   let account = new Accounts({
+//     savingsPayments: +document.getElementById('savingsPayments').value,
+//     rentPayments: +document.getElementById('rentPayments').value,
+//     savingsStart: +document.getElementById('savingsStart').value
+//   })
+//   // console.log('rentNumbers rentPayments', rentPayments)
+//   // console.log('rentNumbers savingsStart', savingsStart)
+//   // console.log('rentNumbers savingsPayments', savingsPayments)
+//
+//   // console.log('rentNumbers account', account)
+//   account.step_n_years(years)
+//   account.prettyPrint()
+//   account.populateResults()
+// }
