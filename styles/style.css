@@ -2,20 +2,21 @@
   box-sizing: border-box;
 }
 body {
-  /* background-color: red; */
   display: flex;
   flex-direction: column;
 }
 
-
-label {
-  display: inline-block;
-}
-
 input {
+  display: inline-block;
   width: 75%;
   padding: 10px;
   margin: 2px;
+  border-radius: 5px;
+  float: right;
+}
+
+input[type=button] {
+  width: 50%;
   border-radius: 5px;
 }
 
@@ -23,18 +24,22 @@ header {
   text-align: center;
 }
 
-.user-inputs {
-  border: 2px solid grey;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
-
-.row {
+.section-heading {
   width: 100%;
+  display: inline-block;
 }
 
+
+.the_button {
+  width: 50%;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: grey;
+  margin: 15px;
+}
+
+
+/* COL STYLES */
 .col-25 {
   width: 25%;
   float: left;
@@ -49,7 +54,7 @@ header {
 
 .col-75 {
   width: 75%;
-  float: left;
+  float: right;
   margin-top: 5px;
 }
 
@@ -57,45 +62,23 @@ header {
   width: 100%;
 }
 
-.buy-rent {
-  border: 2px solid green;
-  display: flex;
-  text-align: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-.owner {
-  border: 2px solid blue;
-  float: left;
-}
-
-.renter {
-  float: right;
-  border: 2px solid red;
-}
-
-.common-costs {
-  margin: 0, auto;
-  border: 2px solid yellow;
-  align-self: center;
-  justify-self: center;
-  text-align: center;
-}
-
-.the_button {
-  width: 50%;
-  border-radius: 5px;
+/* INPUT STYLES */
+.user-inputs {
   padding: 5px;
-  background-color: grey;
-  margin: 15px;
+  border-right: 2px solid grey;
+  /* display: flex; */
+  flex-direction: column;
+  align-items: center;
 }
+
 
 .outputs {
+  padding: 5px;
   text-align: center;
+  float: right;
 }
 
-input[type=button] {
-  width: 50%;
-  border-radius: 5px;
+.output-item {
+  text-align: left;
+  margin: 5px;
 }

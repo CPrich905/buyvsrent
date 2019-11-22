@@ -15,133 +15,81 @@
     <h1>
       Buy vs Rent
     </h1>
-    <p>This calculator takes your inputs and compares the long term costs of buying vs renting a property.</p>
+    <p>This calculator takes your inputs and compares the long term costs of buying vs renting a property over a defined span of years</p>
   </header>
-
-  <div class="row">
+<div class="container">
+  <div class="col-100">
     <div class="user-inputs col-50">
       <h2>User input</h2>
       <p>Add in your buy vs renting figures below.</p>
       <form action="" id="input">
 <!-- INITIAL AMOUNT & MONTHLY PAYMENTS -->
-        <div class="row">
-          <div class="col-25">
-            <label for="savingsStart">Initial investment:</label>
+          <div class="col-100">
+            <div class="col-50">
+              <label for="savingsStart">Initial investment:</label>
+            </div>
+            <div class="col-50">
+              <input type="number" name="savingsStart" id="savingsStart" value="15000">
+            </div>
+            <p>This is your initial capital - either a deposit for a house or a lump sum in savings</p>
+
+            <div class="col-50">
+              <label for="savingsPayments">Monthly payments</label>
+            </div>
+            <div class="col-50">
+              <input type="number" name="savingsPayments" id="savingsPayments" value="2000">
+            </div>
+            <p>Your maximum rent/mortgage payment amount. Home owners will see savings payments made once the mortgage is paid off. Renters will have the difference between this amount and their rent per month put into the savings account.</p>
           </div>
-          <div class="col-75">
-            <input type="number" name="savingsStart" id="savingsStart" value="15000">
+      <!-- HOME OWNER INPUTS -->
+          <div class="col-100 owner">
+            <h3 class="section-heading">Ownership costs</h3>
+
+            <div class="col-50">
+              <label for="mortgageStart">Initial mortgage deposit (assumed to be your full initial investment)</label>
+            </div>
+            <div class="col-50">
+              <input type="number" name="mortgageStart" id="mortgageStart" value="15000" onchange="runNumbers()">
+            </div>
+            <div class="col-50">
+              <label for="mortgageInterest">Mortgage interest amount</label>
+            </div>
+            <div class="col-50">
+              <input type="number" name="mortgageInterest" id="mortgageInterest" value="0.025" onchange="runNumbers()">
+            </div>
+            <div class="col-50">
+              <label for="houseValue">House value</label>
+            </div>
+            <div class="col-50">
+              <input type="number" name="houseValue" id="houseValue" value="400000" onchange="runNumbers()">
+            </div>
           </div>
-          <p>This is your initial capital - either a deposit for a house or a lump sum in savings</p>
-        </div>
 
-        <div class="row">
-          <div class="col-25">
-            <label for="savingsPayments">Monthly payments</label>
+
+          <!-- RENTAL INPUTS -->
+          <div class="col-100 renter">
+            <h3 class="section-heading">Enter your rental costs</h3>
+
+            <div class="col-50">
+              <label for="rentPayments">Monthly spend on rent & bills</label>
+            </div>
+            <div class="col-50">
+              <input type="number" name="rentPayments" id="rentPayments" value="1500" onchange="runNumbers()">
+            </div>
+            <div class="col-50">
+              <label for="savingsInterest">Savings interest</label>
+            </div>
+            <div class="col-50">
+              <input type="number" name="savingsInterest" id="savingsInterest" value="0.07" onchange="runNumbers()">
+            </div>
           </div>
-          <div class="col-75">
-            <input type="number" name="savingsPayments" id="savingsPayments" value="2000">
-          </div>
-          <p>Your maximum rent/mortgage payment amount. Home owners will see savings payments made once the mortgage is paid off. Renters will have the difference between this amount and their rent per month put into the savings account.</p>
-        </div>
 
+        </form>
+      </div>
+  </div>
 
-      </form>
-    </div>
-</div>
-<!--
-
-YEARS/MULTIPLIER, OUTPUTS AND BUTTON HERE
-
- -->
- <div class="buy-rent">
-   <div class="row">
-     <h2>Owner/Renter details</h2>
-   </div>
-   <div class="row">
-     <form action="" id="houseInputs">
-
-       <div class="owner col-50">
-         <h3>Ownership costs</h3>
-         <div class="col-25">
-           <label for="mortgageStart">Initial mortgage deposit (assumed to be your full initial investment)</label>
-         </div>
-         <div class="col-75">
-           <input type="number" name="mortgageStart" id="mortgageStart" value="15000" onchange="runNumbers()">
-         </div>
-         <div class="col-25">
-           <label for="mortgageInterest">Mortgage interest amount</label>
-         </div>
-         <div class="col-75">
-           <input type="number" name="mortgageInterest" id="mortgageInterest" value="0.025" onchange="runNumbers()">
-         </div>
-
-         <div class="col-25">
-           <label for="houseValue">House value</label>
-         </div>
-         <div class="col-75">
-           <input type="number" name="houseValue" id="houseValue" value="400000" onchange="runNumbers()">
-         </div>
-
-       </div>
-
-       <div class="renter col-50">
-         <h3>Enter your rental costs</h3>
-         <div class="col-25">
-           <label for="rentPayments">Monthly spend on rent & bills</label>
-         </div>
-         <div class="col-75">
-           <input type="number" name="rentPayments" id="rentPayments" value="1500" onchange="runNumbers()">
-         </div>
-
-         <div class="col-25">
-           <label for="savingsInterest">Savings interest</label>
-         </div>
-         <div class="col-75">
-           <input type="number" name="savingsInterest" id="savingsInterest" value="0.07" onchange="runNumbers()">
-         </div>
-       </div>
-     </div>
-
-     <!-- ADDITIONAL FIGURES -->
-     <div class="row">
-       <div class="commonCosts col-100">
-         <h3>Enter additional figures if known</h3>
-         <div class="col-50">
-           <div class="col-25">
-             <label for="houseGrowth">House value growth</label>
-           </div>
-           <div class="col-75">
-             <input type="number" name="houseGrowth" id="houseGrowth" value="0.03" onchange="runNumbers()">
-           </div>
-           <div class="col-25">
-             <label for="rentGrowth">Rent growth/increase</label>
-           </div>
-           <div class="col-75">
-             <input type="number" name="rentGrowth" id="rentGrowth" value="0" onchange="runNumbers(); rentNumbers()">
-           </div>
-         </div>
-
-         <div class="col-50">
-           <div class="col-25">
-             <label for="expendibleIncomeIncrease">Expendible income increase</label>
-           </div>
-           <div class="col-75">
-             <input type="number" name="expendibleIncomeIncrease" id="expendibleIncomeIncrease" placeholder="Expendible income increase" onchange="runNumbers(); rentNumbers()">
-           </div>
-
-         </div>
-       </div>
-     </div>
-   </div>
- </div>
-</form>
-
-</div>
-
-
- <!-- YEARS INPUT -->
-    <div class="outputs col-50">
-      <div class="row">
+  <div class="outputs col-50">
+      <div class="col-100">
         <div class="col-50">
           <label for="years">Years to calculate</label>
         </div>
@@ -154,26 +102,22 @@ YEARS/MULTIPLIER, OUTPUTS AND BUTTON HERE
       <button class="the_button" onclick="runNumbers()">
         Do the maths
       </button>
-      <div class="ownerResults col-100">
+      <div class="ownerResults col-50">
         <h4>Owner</h4>
-          <p class="mortgage">Mortgage: <span id="mortgageResult"></span> </p>
-          <p class="savings">Savings:<span id="ownerSavingsResult"></span> </p>
-          <p class="ownerTotalAssetsResult">Total assets:<span id="ownerTotalAssetsResult"></span> </p>
+          <p class="mortgage output-item">Mortgage: <span id="mortgageResult"></span> </p>
+          <p class="savings output-item">Savings:<span id="ownerSavingsResult"></span> </p>
+          <p class="ownerTotalAssetsResult output-item">Total assets:<span id="ownerTotalAssetsResult"></span> </p>
       </div>
-      <div class="renterResults col-100">
+      <div class="renterResults col-50">
         <h4>Renter</h4>
-          <p class="rentPayments">Rent payments: <span id="rentPaymentsResult"></span> </p>
-          <p class="savings">Savings:<span id="rentSavingsResult"></span> </p>
-          <p class="rentTotalAssets">Total assets:<span id="rentAssetsResult"></span> </p>
+          <p class="rentPayments output-item">Rent payments: <span id="rentPaymentsResult"></span> </p>
+          <p class="savings output-item">Savings:<span id="rentSavingsResult"></span> </p>
+          <p class="rentTotalAssets output-item">Total assets:<span id="rentAssetsResult"></span> </p>
       </div>
     </div>
   </div>
 
-
-<!--
-                    OWNER & RENTER DETAIL
- -->
-
+</div>
 
 
 

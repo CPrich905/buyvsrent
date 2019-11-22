@@ -22,7 +22,6 @@ function Accounts({
   this.mortgagePayments = mortgagePayments
   this.houseValue = houseValue
   this.houseGrowth = houseGrowth
-
   this.savings = savingsStart
   this.savings_paid = 0
   this.mortgage = mortgageStart
@@ -35,7 +34,6 @@ function Accounts({
 
     // Step 1 month at a time, as savings often compound monthly
     for (i = 0; i < 12; i++) {
-
       ///// MORTGAGE
       // Calculate mortage interest
       mInterest = this.mortgage * (this.mortgageInterest / 12);
@@ -57,12 +55,20 @@ function Accounts({
       // Add savings interest
       sInterest = this.savings * (this.savingsInterest / 12)
       this.savings += sInterest
-
       // Monthly contribution + leftovers in case mortgage was paid
       this.savings += this.savingsPayments + oneOffSavings
       this.savings_paid += this.savingsPayments + oneOffSavings
       oneOffSavings = 0
+
+      if(this.rentPayments > 0) {
+        let rentSaves = savingsPayments - rentPayments
+        rSavings = savingsStart + rentSaves
+        this.savings += rSavings
+        console.log('rent savings from step are', this.savings)
+      }
     }
+
+    // savings += savingsPayments - rentPayments and assign as new value to savingsPayments.
 
     // Update house price (annually, it doesn't compound)
     houseValueAccrued = this.houseValue * this.houseGrowth
@@ -156,12 +162,9 @@ function test() {
     houseValue: houseValue
   })
 
-  console.log('test buyAccount', buyAccount)
   buyAccount.step_n_years(years)
   buyAccount.prettyPrint()
 
-
-  console.log('test rentAccount', rentAccount)
   rentAccount.step_n_years(years)
   rentAccount.prettyPrint()
 }
@@ -177,33 +180,29 @@ function runNumbers() {
   let savingsStart = +document.getElementById('savingsStart').value
   let mortgageStart = (houseValue - savingsStart)
   let rentPayments = +document.getElementById('rentPayments').value
+  let mortgagePayments = +document.getElementById('savingsPayments').value
 
 
-
-  // rental account - moved to rentNumbers
-  // buyer account
+  // sets up a new account for home-owners, taking figures from UI.
   let buyAccount = new Accounts({
     savingsPayments: savingsPayments,
-    mortgagePayments: +document.getElementById('savingsPayments').value,
+    mortgagePayments: mortgagePayments,
     savingsStart: savingsStart,
     houseValue: houseValue,
     mortageStart: mortgageStart
   })
-  //
-  console.log('runNumbers buyAccount', buyAccount)
+  // runs through results from buyAccount, runs step_n_years() where n = UI then populates results based on output from step_n_years()
   buyAccount.step_n_years(years)
-  buyAccount.prettyPrint()
   buyAccount.populateBuyResults()
 
+  // sets up new account for renters, runs step_n_years() where n = UI then populates results based on output from step_n_years()
   let rentAccount = new Accounts({
     savingsPayments: savingsPayments,
     savingsStart: savingsStart,
     rentPayments: rentPayments
   })
 
-  console.log('runNumbers rentAccount', rentAccount)
   rentAccount.step_n_years(years)
-  rentAccount.prettyPrint()
   rentAccount.populateRentResults()
 }
 
