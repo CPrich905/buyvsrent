@@ -25,7 +25,7 @@
       <div class="user-inputs col-50">
         <h2>User input</h2>
         <p>Add in your buy vs renting figures below.</p>
-        <form action="" id="input">
+        <form action="" id="input" onkeyup="runNumbers()">
           <!-- INITIAL AMOUNT & MONTHLY PAYMENTS -->
           <div class="col-100">
             <div class="col-50">
@@ -64,19 +64,19 @@
               <label for="mortgageStart">Initial mortgage deposit (assumed to be your full initial investment)</label>
             </div>
             <div class="col-50">
-              <input type="number" name="mortgageStart" id="mortgageStart" value="15000" onchange="runNumbers()">
+              <input type="number" name="mortgageStart" id="mortgageStart" value="15000">
             </div>
             <div class="col-50">
               <label for="mortgageInterest">Mortgage interest amount</label>
             </div>
             <div class="col-50">
-              <input type="number" name="mortgageInterest" id="mortgageInterest" value="0.025" onchange="runNumbers()">
+              <input type="number" name="mortgageInterest" id="mortgageInterest" value="0.025">
             </div>
             <div class="col-50">
               <label for="houseValue">House value</label>
             </div>
             <div class="col-50">
-              <input type="number" name="houseValue" id="houseValue" value="400000" onchange="runNumbers()">
+              <input type="number" name="houseValue" id="houseValue" value="400000">
             </div>
           </div>
 
@@ -89,7 +89,7 @@
               <label for="savingsInterest">Savings interest</label>
             </div>
             <div class="col-50">
-              <input type="number" name="savingsInterest" id="savingsInterest" value="0.07" onchange="runNumbers()">
+              <input type="number" name="savingsInterest" id="savingsInterest" value="0.07">
             </div>
           </div>
 
@@ -103,14 +103,11 @@
           <label for="years">Years to calculate</label>
         </div>
         <div class="col-50">
-          <input type="number" name="years" id="years" value="25">
+          <input type="number" name="years" id="years" value="25" onkeyup="runNumbers()">
         </div>
       </div>
 
       <h2>Results</h2>
-      <button class="the_button" onclick="runNumbers()">
-        Do the maths
-      </button>
       <div class="ownerResults col-50">
         <h4>Owner</h4>
         <p class="mortgage output-item">Mortgage: <span id="mortgageResult"></span> </p>
