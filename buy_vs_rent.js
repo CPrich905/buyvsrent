@@ -64,7 +64,7 @@ function Accounts({
         let rentSaves = savingsPayments - rentPayments
         rSavings = savingsStart + rentSaves
         this.savings += rSavings
-        console.log('rent savings from step are', this.savings)
+        // console.log('rent savings from step are', this.savings)
       }
     }
 
@@ -120,7 +120,7 @@ function Accounts({
 
   //
   this.populateRentResults = function() {
-    console.log('populateRentResults firing')
+    // console.log('populateRentResults firing')
     //function to populate results on page
     mortgageResult.innerHTML = this.mortgage.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})
     rentSavingsResult.innerHTML = this.savings.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})
@@ -128,7 +128,7 @@ function Accounts({
 
   }
   this.populateBuyResults = function() {
-    console.log('populateBuyResults firing')
+    // console.log('populateBuyResults firing')
 
     mortgageResult.innerHTML = this.mortgage.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})
     ownerSavingsResult.innerHTML = this.savings.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})
@@ -175,7 +175,6 @@ function runNumbers() {
   //COMMON VALUES
   let years = +document.getElementById('years').value
   let savingsPayments = +document.getElementById('savingsPayments').value
-  console.log('runNumbers years', years)
   let houseValue = +document.getElementById('houseValue').value
   let savingsStart = +document.getElementById('savingsStart').value
   let mortgageStart = (houseValue - savingsStart)
