@@ -34,12 +34,24 @@
             <p>This is your initial capital - either a deposit for a house or a lump sum in savings</p>
 
             <div class="col-50">
-              <label for="savingsPayments">Monthly payments</label>
+              <label for="availableIncome">Total funds available for mortgage or rent and savings per month</label>
             </div>
             <div class="col-50">
-              <input type="number" name="savingsPayments" id="savingsPayments" value="2000">
+              <input type="number" name="availableIncome" id="availableIncome" value="1500">
             </div>
-            <p>Your maximum rent/mortgage payment amount. Home owners will see savings payments made once the mortgage is paid off. Renters will have the difference between this amount and their rent per month put into the savings account.</p>
+            <div class="col-50">
+              <label for="mortgagePayments">Mortgage</label>
+            </div>
+            <div class="col-50">
+              <input type="number" name="mortgagePayments" id="mortgagePayments" value="1000">
+            </div>
+            <div class="col-50">
+              <label for="rentPayments">Rent</label>
+            </div>
+            <div class="col-50">
+              <input type="number" name="rentPayments" id="rentPayments" value="1000">
+            </div>
+
           </div>
       <!-- HOME OWNER INPUTS -->
           <div class="col-100 owner">
@@ -68,14 +80,8 @@
 
           <!-- RENTAL INPUTS -->
           <div class="col-100 renter">
-            <h3 class="section-heading">Enter your rental costs</h3>
 
-            <div class="col-50">
-              <label for="rentPayments">Monthly spend on rent & bills</label>
-            </div>
-            <div class="col-50">
-              <input type="number" name="rentPayments" id="rentPayments" value="1500" onchange="runNumbers()">
-            </div>
+
             <div class="col-50">
               <label for="savingsInterest">Savings interest</label>
             </div>

@@ -139,25 +139,26 @@ function Accounts({
 
 function test() {
   // Check results match python with some sensible parameters
-  let years = 10
-  let initialInvestment = 10000
+  let years = 0
+  let initialInvestment = 20000
   let houseValue = 400000
   let mortgageStart = houseValue - initialInvestment
+
 
   // let rentPayments = 1300
   // let monthlyPayments = savingsPayments
 
   // Rent type account
   let rentAccount = new Accounts({
-    savingsPayments: 800,
+    savingsPayments: 0,
     rentPayments: 1300,
     savingsStart: initialInvestment
   })
 
   // Mortgage type account
   let buyAccount = new Accounts({
-    savingsPayments: 800,
-    mortgagePayments: 1200,
+    savingsPayments: 2000,
+    mortgagePayments: 2000,
     mortgageStart: mortgageStart,
     houseValue: houseValue
   })
@@ -169,24 +170,23 @@ function test() {
   rentAccount.prettyPrint()
 }
 
-test()
+// test()
 
 function runNumbers() {
   //COMMON VALUES
+  let availableIncome = +document.getElementById('availableIncome').value
   let years = +document.getElementById('years').value
-  let savingsPayments = +document.getElementById('savingsPayments').value
-  let houseValue = +document.getElementById('houseValue').value
   let savingsStart = +document.getElementById('savingsStart').value
-  let mortgageStart = (houseValue - savingsStart)
-  let rentPayments = +document.getElementById('rentPayments').value
-  let mortgagePayments = +document.getElementById('savingsPayments').value
-
 
   // sets up a new account for home-owners, taking figures from UI.
+  let houseValue = +document.getElementById('houseValue').value
+  let mortgageStart = (houseValue - savingsStart)
+  let mortgagePayments = +document.getElementById('mortgagePayments').value
+
   let buyAccount = new Accounts({
-    savingsPayments: savingsPayments,
+    savingsPayments: availableIncome - mortgagePayments,
     mortgagePayments: mortgagePayments,
-    savingsStart: savingsStart,
+    savingsStart: 0,
     houseValue: houseValue,
     mortageStart: mortgageStart
   })
@@ -195,8 +195,10 @@ function runNumbers() {
   buyAccount.populateBuyResults()
 
   // sets up new account for renters, runs step_n_years() where n = UI then populates results based on output from step_n_years()
+  let rentPayments = +document.getElementById('rentPayments').value
+
   let rentAccount = new Accounts({
-    savingsPayments: savingsPayments,
+    savingsPayments: availableIncome - rentPayments,
     savingsStart: savingsStart,
     rentPayments: rentPayments
   })
