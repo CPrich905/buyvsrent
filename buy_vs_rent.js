@@ -112,16 +112,11 @@ function Accounts({
 
   //
   this.populateRentResults = function () {
-    // console.log('populateRentResults firing')
-    //function to populate results on page
-    mortgageResult.innerHTML = this.mortgage.toLocaleString('en-GB', { style: 'currency', currency: 'GBP' })
     rentSavingsResult.innerHTML = this.savings.toLocaleString('en-GB', { style: 'currency', currency: 'GBP' })
     rentAssetsResult.innerHTML = this.totalAssets.toLocaleString('en-GB', { style: 'currency', currency: 'GBP' })
 
   }
   this.populateBuyResults = function () {
-    // console.log('populateBuyResults firing')
-
     mortgageResult.innerHTML = this.mortgage.toLocaleString('en-GB', { style: 'currency', currency: 'GBP' })
     ownerSavingsResult.innerHTML = this.savings.toLocaleString('en-GB', { style: 'currency', currency: 'GBP' })
     ownerTotalAssetsResult.innerHTML = this.totalAssets.toLocaleString('en-GB', { style: 'currency', currency: 'GBP' })
