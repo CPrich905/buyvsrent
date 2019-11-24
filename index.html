@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,20 +11,22 @@
 
   <title>Buy vs Rent</title>
 </head>
+
 <body>
   <header>
     <h1>
       Buy vs Rent
     </h1>
-    <p>This calculator takes your inputs and compares the long term costs of buying vs renting a property over a defined span of years</p>
+    <p>This calculator takes your inputs and compares the long term costs of buying vs renting a property over a defined
+      span of years</p>
   </header>
-<div class="container">
-  <div class="col-100">
-    <div class="user-inputs col-50">
-      <h2>User input</h2>
-      <p>Add in your buy vs renting figures below.</p>
-      <form action="" id="input">
-<!-- INITIAL AMOUNT & MONTHLY PAYMENTS -->
+  <div class="container">
+    <div class="col-100">
+      <div class="user-inputs col-50">
+        <h2>User input</h2>
+        <p>Add in your buy vs renting figures below.</p>
+        <form action="" id="input">
+          <!-- INITIAL AMOUNT & MONTHLY PAYMENTS -->
           <div class="col-100">
             <div class="col-50">
               <label for="savingsStart">Initial investment:</label>
@@ -53,7 +56,7 @@
             </div>
 
           </div>
-      <!-- HOME OWNER INPUTS -->
+          <!-- HOME OWNER INPUTS -->
           <div class="col-100 owner">
             <h3 class="section-heading">Ownership costs</h3>
 
@@ -92,15 +95,15 @@
 
         </form>
       </div>
-  </div>
+    </div>
 
-  <div class="outputs col-50">
+    <div class="outputs col-50">
       <div class="col-100">
         <div class="col-50">
           <label for="years">Years to calculate</label>
         </div>
         <div class="col-50">
-          <input type="number" name="years" id="years" value="20">
+          <input type="number" name="years" id="years" value="25">
         </div>
       </div>
 
@@ -110,22 +113,23 @@
       </button>
       <div class="ownerResults col-50">
         <h4>Owner</h4>
-          <p class="mortgage output-item">Mortgage: <span id="mortgageResult"></span> </p>
-          <p class="savings output-item">Savings:<span id="ownerSavingsResult"></span> </p>
-          <p class="ownerTotalAssetsResult output-item">Total assets:<span id="ownerTotalAssetsResult"></span> </p>
+        <p class="mortgage output-item">Mortgage: <span id="mortgageResult"></span> </p>
+        <p class="savings output-item">Savings:<span id="ownerSavingsResult"></span> </p>
+        <p class="ownerTotalAssetsResult output-item">Total assets:<span id="ownerTotalAssetsResult"></span> </p>
       </div>
       <div class="renterResults col-50">
         <h4>Renter</h4>
-          <p class="rentPayments output-item">Rent payments: <span id="rentPaymentsResult"></span> </p>
-          <p class="savings output-item">Savings:<span id="rentSavingsResult"></span> </p>
-          <p class="rentTotalAssets output-item">Total assets:<span id="rentAssetsResult"></span> </p>
+        <p class="rentPayments output-item">Rent payments: <span id="rentPaymentsResult"></span> </p>
+        <p class="savings output-item">Savings:<span id="rentSavingsResult"></span> </p>
+        <p class="rentTotalAssets output-item">Total assets:<span id="rentAssetsResult"></span> </p>
       </div>
     </div>
   </div>
 
-</div>
+  </div>
 
 
 
-  </body>
+</body>
+
 </html>

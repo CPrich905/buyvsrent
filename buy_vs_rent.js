@@ -28,7 +28,7 @@ function Accounts({
   this.mortgagePaid = 0
 
   // set up the object methods
-  this.step = function() {
+  this.step = function () {
     // Step a single year
     oneOffSavings = 0
 
@@ -59,16 +59,7 @@ function Accounts({
       this.savings += this.savingsPayments + oneOffSavings
       this.savings_paid += this.savingsPayments + oneOffSavings
       oneOffSavings = 0
-
-      if(this.rentPayments > 0) {
-        let rentSaves = savingsPayments - rentPayments
-        rSavings = savingsStart + rentSaves
-        this.savings += rSavings
-        // console.log('rent savings from step are', this.savings)
-      }
     }
-
-    // savings += savingsPayments - rentPayments and assign as new value to savingsPayments.
 
     // Update house price (annually, it doesn't compound)
     houseValueAccrued = this.houseValue * this.houseGrowth
@@ -78,7 +69,7 @@ function Accounts({
     this.updateTotalAssets()
   }
 
-  this.updateTotalAssets = function() {
+  this.updateTotalAssets = function () {
     totalAssets = 0
 
     if (this.mortgagePaid > 0) {
@@ -94,13 +85,14 @@ function Accounts({
   }
 
   // function multplying inputs by years
-  this.step_n_years = function(years) {
+  this.step_n_years = function (years) {
     for (year = 0; year < years; year++) {
+      console.log(year, this.savings, this.savingsPayments, this.mortgage)
       this.step()
     }
   }
   // function to return results in console
-  this.prettyPrint = function() {
+  this.prettyPrint = function () {
     const toPrint = ['mortgage', 'savings', 'totalAssets']
 
     console.log('*'.repeat(70))
@@ -119,20 +111,20 @@ function Accounts({
   }
 
   //
-  this.populateRentResults = function() {
+  this.populateRentResults = function () {
     // console.log('populateRentResults firing')
     //function to populate results on page
-    mortgageResult.innerHTML = this.mortgage.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})
-    rentSavingsResult.innerHTML = this.savings.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})
-    rentAssetsResult.innerHTML = this.totalAssets.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})
+    mortgageResult.innerHTML = this.mortgage.toLocaleString('en-GB', { style: 'currency', currency: 'GBP' })
+    rentSavingsResult.innerHTML = this.savings.toLocaleString('en-GB', { style: 'currency', currency: 'GBP' })
+    rentAssetsResult.innerHTML = this.totalAssets.toLocaleString('en-GB', { style: 'currency', currency: 'GBP' })
 
   }
-  this.populateBuyResults = function() {
+  this.populateBuyResults = function () {
     // console.log('populateBuyResults firing')
 
-    mortgageResult.innerHTML = this.mortgage.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})
-    ownerSavingsResult.innerHTML = this.savings.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})
-    ownerTotalAssetsResult.innerHTML = this.totalAssets.toLocaleString('en-GB', {style: 'currency', currency: 'GBP'})
+    mortgageResult.innerHTML = this.mortgage.toLocaleString('en-GB', { style: 'currency', currency: 'GBP' })
+    ownerSavingsResult.innerHTML = this.savings.toLocaleString('en-GB', { style: 'currency', currency: 'GBP' })
+    ownerTotalAssetsResult.innerHTML = this.totalAssets.toLocaleString('en-GB', { style: 'currency', currency: 'GBP' })
   }
 }
 
@@ -177,6 +169,8 @@ function runNumbers() {
   let availableIncome = +document.getElementById('availableIncome').value
   let years = +document.getElementById('years').value
   let savingsStart = +document.getElementById('savingsStart').value
+  let mortgageInterest = +document.getElementById('mortgageInterest').value
+  let savingsInterest = +document.getElementById('savingsInterest').value
 
   // sets up a new account for home-owners, taking figures from UI.
   let houseValue = +document.getElementById('houseValue').value
@@ -188,7 +182,9 @@ function runNumbers() {
     mortgagePayments: mortgagePayments,
     savingsStart: 0,
     houseValue: houseValue,
-    mortageStart: mortgageStart
+    mortgageStart: mortgageStart,
+    mortgageInterest: mortgageInterest,
+    savingsInterest: savingsInterest
   })
   // runs through results from buyAccount, runs step_n_years() where n = UI then populates results based on output from step_n_years()
   buyAccount.step_n_years(years)
@@ -200,7 +196,8 @@ function runNumbers() {
   let rentAccount = new Accounts({
     savingsPayments: availableIncome - rentPayments,
     savingsStart: savingsStart,
-    rentPayments: rentPayments
+    rentPayments: rentPayments,
+    savingsInterest: savingsInterest
   })
 
   rentAccount.step_n_years(years)
