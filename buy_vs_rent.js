@@ -87,7 +87,7 @@ function Accounts({
   // function multplying inputs by years
   this.step_n_years = function (years) {
     for (year = 0; year < years; year++) {
-      console.log(year, this.savings, this.savingsPayments, this.mortgage)
+      // console.log(year, this.savings, this.savingsPayments, this.mortgage)
       this.step()
     }
   }
@@ -164,8 +164,10 @@ function runNumbers() {
   let availableIncome = +document.getElementById('availableIncome').value
   let years = +document.getElementById('years').value
   let savingsStart = +document.getElementById('savingsStart').value
-  let mortgageInterest = +document.getElementById('mortgageInterest').value
-  let savingsInterest = +document.getElementById('savingsInterest').value
+  let mortgageInterest = (+document.getElementById('mortgageInterest').value/100)
+  console.log(mortgageInterest)
+  let savingsInterest = (+document.getElementById('savingsInterest').value/100)
+  console.log(savingsInterest)
 
   // sets up a new account for home-owners, taking figures from UI.
   let houseValue = +document.getElementById('houseValue').value
@@ -198,31 +200,3 @@ function runNumbers() {
   rentAccount.step_n_years(years)
   rentAccount.populateRentResults()
 }
-
-//rent numbers following calc_net_assets in buy_vs_rent.py line 96
-
-
-// runNumbers()
-
-// function rentNumbers() {
-//   //COMMON VALUES
-//   let years = +document.getElementById('years').value
-//   let rentPayments = +document.getElementById('rentPayments').value
-//   let savingsStart = +document.getElementById('savingsStart').value
-//   let savingsPayments = +document.getElementById('savingsPayments').value
-//
-//
-//   let account = new Accounts({
-//     savingsPayments: +document.getElementById('savingsPayments').value,
-//     rentPayments: +document.getElementById('rentPayments').value,
-//     savingsStart: +document.getElementById('savingsStart').value
-//   })
-//   // console.log('rentNumbers rentPayments', rentPayments)
-//   // console.log('rentNumbers savingsStart', savingsStart)
-//   // console.log('rentNumbers savingsPayments', savingsPayments)
-//
-//   // console.log('rentNumbers account', account)
-//   account.step_n_years(years)
-//   account.prettyPrint()
-//   account.populateResults()
-// }

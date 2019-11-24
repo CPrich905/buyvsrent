@@ -32,7 +32,7 @@
               <label for="savingsStart">Initial investment:</label>
             </div>
             <div class="col-50">
-              <input type="number" name="savingsStart" id="savingsStart" value="15000">
+              <input type="number" min="0.01" step="0.01" max="500000" name="savingsStart" id="savingsStart" value="15000">
             </div>
             <p>This is your initial capital - either a deposit for a house or a lump sum in savings</p>
 
@@ -58,7 +58,6 @@
           </div>
           <!-- HOME OWNER INPUTS -->
           <div class="col-100 owner">
-            <h3 class="section-heading">Ownership costs</h3>
 
             <div class="col-50">
               <label for="mortgageStart">Initial mortgage deposit (assumed to be your full initial investment)</label>
@@ -67,29 +66,24 @@
               <input type="number" name="mortgageStart" id="mortgageStart" value="15000">
             </div>
             <div class="col-50">
-              <label for="mortgageInterest">Mortgage interest amount</label>
-            </div>
-            <div class="col-50">
-              <input type="number" name="mortgageInterest" id="mortgageInterest" value="0.025">
-            </div>
-            <div class="col-50">
               <label for="houseValue">House value</label>
             </div>
             <div class="col-50">
               <input type="number" name="houseValue" id="houseValue" value="400000">
             </div>
-          </div>
-
-
-          <!-- RENTAL INPUTS -->
-          <div class="col-100 renter">
-
-
             <div class="col-50">
-              <label for="savingsInterest">Savings interest</label>
+              <label for="mortgageInterest">Mortgage interest in %</label>
             </div>
             <div class="col-50">
-              <input type="number" name="savingsInterest" id="savingsInterest" value="0.07">
+              <input type="number" name="mortgageInterest" id="mortgageInterest" value="2.5">
+            </div>
+
+
+            <div class="col-50">
+              <label for="savingsInterest">Savings interest in % </label>
+            </div>
+            <div class="col-50">
+              <input type="number" name="savingsInterest" id="savingsInterest" value="2">
             </div>
           </div>
 
@@ -111,14 +105,14 @@
       <div class="ownerResults col-50">
         <h4>Owner</h4>
         <p class="mortgage output-item">Mortgage: <span id="mortgageResult"></span> </p>
-        <p class="savings output-item">Savings:<span id="ownerSavingsResult"></span> </p>
-        <p class="ownerTotalAssetsResult output-item">Total assets:<span id="ownerTotalAssetsResult"></span> </p>
+        <p class="savings output-item">Savings: <span id="ownerSavingsResult"></span> </p>
+        <p class="ownerTotalAssetsResult output-item">Total assets: <span id="ownerTotalAssetsResult"></span> </p>
       </div>
       <div class="renterResults col-50">
         <h4>Renter</h4>
         <p class="rentPayments output-item">Rent payments: <span id="rentPaymentsResult"></span> </p>
-        <p class="savings output-item">Savings:<span id="rentSavingsResult"></span> </p>
-        <p class="rentTotalAssets output-item">Total assets:<span id="rentAssetsResult"></span> </p>
+        <p class="savings output-item">Savings: <span id="rentSavingsResult"></span> </p>
+        <p class="rentTotalAssets output-item">Total assets: <span id="rentAssetsResult"></span> </p>
       </div>
     </div>
   </div>
